@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block title %}Market Updates{% endblock %}
+
+{% block content %}
+    <h1 data-cy="market-updates__title">Market Updates</h1>
+
+    {% if authenticated %}
+        <p data-cy="market-updates__user-cryptobalance">Your Crypto Balance: {{ cryptoBalance }}</p>
+
+        <ul data-cy="market-updates__list">
+            {% for cryptocurrency in marketData %}
+                <li data-cy="market-updates__item">
+                    <h2 data-cy="market-updates__item-title">{{ cryptocurrency.name }}</h2>
+                    <p data-cy="market-updates__item-price">{{ cryptocurrency.price }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p data-cy="market-updates__user-cryptobalance"></p>
+        <p>Please login to see market updates.</p>
+    {% endif %}
+{% endblock %}

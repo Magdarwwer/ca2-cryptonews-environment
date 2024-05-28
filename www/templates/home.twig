@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+
+{% block title %}Home page{% endblock %}
+
+{% block content %}
+    <h1>Hello world!</h1>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+    </head>
+    <body>
+    <div>
+        <?php if ($authenticated): ?>
+        <h1 data-cy="home__welcomeMsg">Welcome <?php echo $username; ?>!</h1>
+        <p>Hello <?php echo $username; ?>, Sign up if you don't have an account or sign in if you have!</p>
+        <?php else: ?>
+        <h1 data-cy="home__welcomeMsg">Hello stranger!</h1>
+        <p>You must be logged in to access the news page.</p>
+        <a href="/sign-up">Sign Up</a> <!-- Add a sign-up link -->
+        <a href="/sign-in">Sign In</a> <!-- Add a sign-in link -->
+        <?php endif; ?>
+
+        <?php if ($authenticated): ?>
+        <h2>News Articles</h2>
+        <div class="article">
+            <h3>Title</h3>
+            <p>Publication Date</p>
+            <p>Author</p>
+            <p>Summary</p>
+        </div>
+        <?php endif; ?>
+    </div>
+    </body>
+    </html>
+{% endblock %}
+
+
+

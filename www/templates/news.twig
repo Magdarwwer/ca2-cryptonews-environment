@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block title %}News page{% endblock %}
+
+{% block content %}
+    <h1>Welcome to CryptoNews!</h1>
+
+    {% if authenticated %}
+        <h1 data-cy="news-articles__title">News Articles</h1>
+        <ul data-cy="news-articles__list">
+            {% for article in articles %}
+                <li data-cy="news-articles__item">
+                    <h2 data-cy="news-articles__item-title">{{ article.title }}</h2>
+                    <p data-cy="news-articles__item-date">Publication Date: {{ article.publication_date }}</p>
+                    <p data-cy="news-articles__item-author">Author: {{ article.author }}</p>
+                    <p data-cy="news-articles__item-summary">Summary: {{ article.summary }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You must be logged in to access the news page.</p>
+    {% endif %}
+{% endblock %}

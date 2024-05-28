@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% block title %}Sign up page{% endblock %}
+
+{% block content %}
+    <h1>Hello!</h1>
+
+    <h2>Sign Up</h2>
+    <form action="/sign-up" method="post" data-cy="sign-up">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required data-cy="sign-up__email"><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required data-cy="sign-up__password"><br><br>
+
+        <label for="repeatPassword">Repeat Password:</label><br>
+        <input type="password" id="repeatPassword" name="repeatPassword" required data-cy="sign-up__repeatPassword"><br><br>
+
+        <label for="numBitcoins">Number of Bitcoins (optional):</label><br>
+        <input type="text" id="numBitcoins" name="numBitcoins" pattern="[0-9]+" title="Please enter a valid number" maxlength="5" data-cy="sign-up__coins"><br><br>
+
+        <input type="submit" value="Sign Up" data-cy="sign-up__btn">
+    </form>
+    <span data-cy="sign-up__wrongEmail"></span>
+    <span data-cy="sign-up__wrongPassword"></span>
+    <span data-cy="sign-up__wrongCoins"></span>
+{% endblock %}

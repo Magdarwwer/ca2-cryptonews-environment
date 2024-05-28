@@ -1,0 +1,54 @@
+{% extends "base.twig" %}
+
+{% block title %}Sign in page{% endblock %}
+
+{% block content %}
+    <h1>Hello!</h1>
+    <p> Sign In page!</p>
+
+    <h2>Sign In</h2>
+    <form action="{{ url_for("sign-in") }}" method="POST" data-cy="sign-in">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required data-cy="sign-in__email"><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required data-cy="sign-in__password"><br><br>
+
+        <input type="submit" value="Sign IN" data-cy="sign-in__btn">
+    </form>
+    <span data-cy="sign-up__wrongEmail"></span>
+    <span data-cy="sign-up__wrongPassword"></span>
+{% endblock %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const signInForm = document.querySelector('#sign-in-form');
+    
+        signInForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+    
+            const formData = new FormData(signInForm); // Get form data
+    
+            fetch('/sign-in', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to home page or do something else upon successful sign-in
+                    window.location.href = '/';
+                } else {
+                    // Handle error response, such as displaying an error message
+                    return response.json(); // Parse response body as JSON
+                }
+            })
+            .then(data => {
+                // Handle JSON data from the server
+                console.error('Sign-in failed:', data.error); // Assuming the server returns an error message in JSON
+            })
+            .catch(error => {
+                console.error('Error occurred:', error);
+            });
+        });
+    });
+    
+</script>
